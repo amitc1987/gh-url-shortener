@@ -1,0 +1,19 @@
+version: '3.7'
+
+services: 
+  # api
+  gh-url-shortener-backend: 
+    container_name: gh-url-shortener
+    build: .
+    links: 
+      - redis
+    ports: 
+      - "8080:5000"
+    volumes: 
+      - .:/usr/src/gh-url-shortener
+
+  # redis db
+  redis: 
+    image: redis:buster
+    ports: 
+      - "6379:6379"
